@@ -1,2 +1,2 @@
 # amazon-price-tracker
-Website that tracks the price of a amazon product.
+Website that tracks the price of amazon products.
