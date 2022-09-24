@@ -5,8 +5,8 @@ defineProps<{
 </script>
 
 <template>
-  <div class="greetings">
-    <h1 class="Title">{{ msg }}</h1>
+  <div class="container">
+    <h1 class="Title d-flex p-2 justify-content-center">{{ msg }}</h1>
   </div>
 </template>
 

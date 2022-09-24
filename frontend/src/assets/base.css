@@ -50,6 +50,7 @@
   }
 }
 
+/*
 *,
 *::before,
 *::after {
@@ -58,9 +59,11 @@
   position: relative;
   font-weight: normal;
 }
+*/
+
 
 body {
-  min-height: 40vh;
+  min-height: 60vh;
   color: var(--color-text);
   background: var(--color-background);
   transition: color 0.5s, background-color 0.5s;
@@ -72,3 +75,4 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+

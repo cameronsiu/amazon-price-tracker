@@ -1,15 +1,17 @@
 <script lang="ts">
-export default {
-  
+import { defineComponent } from "vue";
+
+export default defineComponent ({
   data() {
     return {
-      products: []
+      products: [] as Array<string>,
+      link: ""
     }
   },
   methods: {
-    submit(event: any) {
+    submit() {
       // Enters the link into the database and starts tracking
-      console.log(event.target.value)
+      console.log(this.link);
       fetch('http://localhost:3000/getData')
       .then((res) => res.json())
       .then(data => console.log(data))
@@ -23,12 +25,12 @@ export default {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ 
-            URL: event.target.value 
+            URL: this.link
           })
       
       })
       .then((res) => res.json())
-      .then(data => {
+      .then((data: any) => {
         this.products.push(data);
       })
       .catch(err => {
@@ -41,17 +43,28 @@ export default {
       // make call to backend
     }
   }
-}
+})
 </script>
 
 <template>
-    <input placeholder="Add Amazon Product URL" @keyup.enter="submit">
-    <ul>
+  <div class="input-group mb-3 d-flex p-2 bd-highlight">
+    <input v-model="link" type="text" class="form-control" placeholder="Add Amazon Product URL"  aria-label="Add Amazon Product URL" aria-describedby="button-addon2" >
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="submit">Track</button>
+  </div>
+  <div class="container">
+    <ul class="list-group d-flex p-2 bd-highlight">
       <template v-for="product in products">
-        <li>{{product.URL}}</li>
-        <button @click="remove_product(product)"></button>
+        <div class="card" style="margin: 10px; border-width: 5px; border-color: lightgray;">
+          <li class="list-group-item">{{product.name}}</li>
+          <li class="list-group-item">Price: {{product.price}}</li>
+          <li class="list-group-item">
+            <a v-bind:href="product.URL" class="link-primary" target="_blank">Link</a>
+          </li>
+          <button type="button" class="btn btn-danger" style="width: 100px;" @click="remove_product(product)">Remove</button>
+        </div>
       </template>
     </ul>
+  </div>
 </template>
 
 <style scoped>
