@@ -59,7 +59,7 @@ export default defineComponent ({
     async remove_product(product: Product) {
       // TODO: As an exercise, create my own popup
       if (confirm("Are you sure you want to delete this product?")) {
-        this.products.splice(this.products.indexOf(product), 1);
+        //this.products.splice(this.products.indexOf(product), 1);
         //window.localStorage.setItem("products", JSON.stringify(this.products));
         // make call to backend
         const deleted_data = await fetch('http://localhost:3000/deletePrice', 
